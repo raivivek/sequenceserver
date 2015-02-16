@@ -92,6 +92,9 @@ BANNER
     on 'i', 'interactive',
        'Run SequenceServer in interactive mode'
 
+    on 't', 'doctor',
+       'Run SequenceServer doctor'
+
     on 'D', 'devel',
        'Start SequenceServer in development mode'
 
@@ -332,6 +335,11 @@ MSG
             exit! unless set?
           end
         end
+      end
+
+      if doctor?
+        SequenceServer::Doctor.diagnose
+        exit
       end
 
       if interactive?
